@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/ipac
+	branch = master
+	commit = 12c50309e79cb305cb313a9892c853e07388167b
+	parent = 514501af7bbe3c06dfe2c3c000ea47376d9cb127
+	method = merge
+	cmdver = 0.4.0
