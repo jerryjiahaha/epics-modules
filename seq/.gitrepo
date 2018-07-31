@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = http://www-csr.bessy.de/control/SoftDist/sequencer/repo/branch-2-2.git
+	branch = master
+	commit = 25200a6c627a6fdb5774e1ef2418bf352d22fd1a
+	parent = 59b56047da7231b79b94f86dbfd42de8be3dac5a
+	method = merge
+	cmdver = 0.4.0
