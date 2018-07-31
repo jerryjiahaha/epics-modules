@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/asyn.git
+	branch = master
+	commit = 7550ea670cd26cc4d55a9eb3877112c804454d6e
+	parent = d9d59be6d8c0f9341a6b5fde5467e2f4b8da05df
+	method = merge
+	cmdver = 0.4.0
