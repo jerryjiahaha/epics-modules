@@ -46,6 +46,9 @@ _alias = {
 _depends = {
     # value must be iterable
     'asyn': ['ipac', 'seq',],
+    'busy': ['asyn', 'autosave',],
+    'sscan': ['seq',],
+    'calc': ['sscan',],
     # If a package does not have depedency, just with empty list
 }
 
