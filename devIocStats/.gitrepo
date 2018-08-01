@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/iocStats.git
+	branch = master
+	commit = 1856ef56b784d61951d02bbd364b2c9ff7857c36
+	parent = c83b565742eb10b13e7f534335ab96ab5ab72e43
+	method = merge
+	cmdver = 0.4.0
