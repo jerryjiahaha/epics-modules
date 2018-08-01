@@ -49,6 +49,8 @@ _depends = {
     'busy': ['asyn', 'autosave',],
     'sscan': ['seq',],
     'calc': ['sscan',],
+    'devIocStats': ['seq',],
+    'alive': [],
     # If a package does not have depedency, just with empty list
 }
 
