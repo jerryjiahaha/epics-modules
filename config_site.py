@@ -16,7 +16,8 @@ class EpicsConfig:
     _CONFIGS = []
     @staticmethod
     def __init__(fname, content, module=''):
-        realfname = os.path.join(module, "configure", fname)
+        filedir = os.path.dirname(os.path.abspath(__file__))
+        realfname = os.path.join(filedir, module, "configure", fname)
         EpicsConfig._CONFIGS.append(ClassConfig(realfname, content))
     @staticmethod
     def dump(envs, write=False):
@@ -114,7 +115,8 @@ def GenerateDepends(depends: dict, modules: set, write=False):
         {k}_DEPEND_DIRS += {" ".join(v)}
         """
     if write:
-        outfile = Path('Makefile.dependency')
+        filedir = os.path.dirname(os.path.abspath(__file__))
+        outfile = Path(filedir).joinpath('Makefile.dependency')
         with outfile.open(mode='w') as f:
             f.write(output)
         print("check file", outfile)

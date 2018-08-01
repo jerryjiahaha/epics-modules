@@ -6,7 +6,7 @@ Build: Check system enviroment first ( `source epics_example.sh` ). Then `make -
 
 You can put `epics-linux-x86_64.conf` under `/etc/ld.so.conf.d/` if you use linux-x86\_64 ( other system can modify from it )
 
-Setup development environment: `./setupRemote.sh`
+~~Setup development environment: `./setupRemote.sh`~~
 
 NOTE: If you use `make -jX` failed, try to build `extensions` first. ( `devIocStats` in `modules` depends on `msi` in `extensions` )
 
