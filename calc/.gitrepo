@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/calc.git
+	branch = master
+	commit = 1342a20d52d81a3de412a712c752b7702811f21b
+	parent = a55683d268ffa9869c09e97e5f6baea0f8d2370e
+	method = merge
+	cmdver = 0.4.0
