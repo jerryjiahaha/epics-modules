@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/alive.git
+	branch = master
+	commit = 59ad7fda5389a9aaf0ce026439a9f84cfb99a5a1
+	parent = 60e1f469ce83c94409841b97f8048395e49169ce
+	method = merge
+	cmdver = 0.4.0
