@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/busy.git
+	branch = master
+	commit = f57930f550f402fc42e06cc96dfbc41b29ec0cdd
+	parent = fac3adc0efeca59672ddda52c7523318a4527a57
+	method = merge
+	cmdver = 0.4.0
