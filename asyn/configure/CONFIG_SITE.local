@@ -1,0 +1,4 @@
+#ifeq ($(OS_CLASS), Linux)
+USR_INCLUDES_Linux += $(shell pkg-config --cflags libtirpc)
+USR_LDFLAGS_Linux += $(shell pkg-config --libs libtirpc)
+#endif
