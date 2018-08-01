@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/epics-modules/autosave.git
+	branch = master
+	commit = f750cc5dc37cc411d0f57a84f89f922b2b9333dd
+	parent = 795e09613d892522e05f114a8c1027a5397c27f7
+	method = merge
+	cmdver = 0.4.0
