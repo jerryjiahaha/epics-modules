@@ -64,7 +64,7 @@ module_alias = {
 support_fname = "SUPPORT.{EPICS_HOST_ARCH}"
 support_content = """
 -include $(TOP)/../configure/SUPPORT.local
-SUPPORT={SUPPORT}
+SUPPORT=${{BASE_SUPPORT}}
 -include $(TOP)/configure/SUPPORT.local
 """
 EpicsConfig(support_fname, support_content)
@@ -72,7 +72,8 @@ EpicsConfig(support_fname, support_content)
 base_fname = "EPICS_BASE.{EPICS_HOST_ARCH}"
 base_content = """
 -include $(TOP)/../configure/EPICS_BASE.local
-EPICS_BASE={BASE_PATH}
+EPICS_BASE=${{BASE_PATH}}
+SUPPORT=${{BASE_SUPPORT_PATH}}
 -include $(TOP)/configure/EPICS_BASE.local
 """
 EpicsConfig(base_fname, base_content)
