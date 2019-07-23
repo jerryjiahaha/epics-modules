@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/epics-modules/calc.git
 	branch = master
-	commit = 1342a20d52d81a3de412a712c752b7702811f21b
-	parent = a55683d268ffa9869c09e97e5f6baea0f8d2370e
+	commit = 2a3ceff7afee73fd82a2c60d637611020cb65bca
+	parent = cbec9b8e50c7a4544a9d64ea7f82a887a39ce012
 	method = merge
 	cmdver = 0.4.0
