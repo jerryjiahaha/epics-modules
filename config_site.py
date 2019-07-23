@@ -9,6 +9,7 @@ Generate CONFIG_SITE.* EPICS_BASE.* SUPPORT* files
 from collections import namedtuple
 from pathlib import Path
 import os
+import argparse
 
 ClassConfig = namedtuple('ClassConfig', 'fname content')
 
@@ -24,6 +25,7 @@ class EpicsConfig:
         for c in EpicsConfig._CONFIGS:
             outfile = c.fname.format_map(envs)
             outcontent = c.content.format_map(envs)
+            print('----------------')
             print('fname:', outfile)
             if write:
                 with Path(outfile).open('w') as f:
@@ -146,8 +148,14 @@ def GenerateReleaseSupport(modules):
 #        template += name + """={SUPPORT}/""" + f"""{m}
     return template
 
-# XXX must be executed under epics-moduels root dir
+# XXX must be executed under epics-modules root dir
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dry-run', help='do not write config files', action='store_true', default=False)
+    args = parser.parse_args()
+    print(args)
+
     from os import getenv
     # These variable could be overrided by local script
     epics_env_config = {
@@ -188,9 +196,11 @@ if __name__ == '__main__':
 #    ))
 
 
-    EpicsConfig.dump(epics_env_config, write=True)
-    GenerateDepends(depends, modules, write=True)
-#    EpicsConfig.dump(epics_env_config)
-#    GenerateDepends(depends, modules)
+    if args.dry_run:
+        EpicsConfig.dump(epics_env_config)
+        GenerateDepends(depends, modules)
+    else:
+        EpicsConfig.dump(epics_env_config, write=True)
+        GenerateDepends(depends, modules, write=True)
 
 
