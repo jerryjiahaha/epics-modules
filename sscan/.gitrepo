@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/epics-modules/sscan.git
 	branch = master
-	commit = 782fff6bae02d79fb852e6493e851a606e35697a
-	parent = a367d6ff928efc26058380c4705193397777fe1f
+	commit = ab8a36c218a6bd6089ad28463d29ae6d8369fedb
+	parent = d8e072b9644e53d9a41d68772de7da35a16fb965
 	method = merge
 	cmdver = 0.4.0
