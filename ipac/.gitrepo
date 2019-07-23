@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/epics-modules/ipac
 	branch = master
-	commit = 12c50309e79cb305cb313a9892c853e07388167b
+	commit = a3e16f4808a413d34e3bd2f2719ac2cabfd4b255
 	parent = 514501af7bbe3c06dfe2c3c000ea47376d9cb127
 	method = merge
 	cmdver = 0.4.0

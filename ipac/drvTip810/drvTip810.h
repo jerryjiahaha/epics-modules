@@ -10,7 +10,7 @@ Description:
     Header file for TEWS TIP810 CAN Bus driver.
 
 Author:
-    Andrew Johnson <anjohnson@iee.org>
+    Andrew Johnson <Andrew.N.Johnson@gmail.com>
 Created:
     20 July 1995
 
@@ -53,9 +53,9 @@ Copyright (c) 1995-2000 Andrew Johnson
 
 
 epicsShareFunc int t810Status(canBusID_t busID);
-epicsShareFunc int t810Report(int page);
-epicsShareFunc int t810Create(char *busName, int card, int slot, int irqNum, int busRate);
+epicsShareFunc long t810Report(int page);
+epicsShareFunc long t810Create(char *busName, int card, int slot, int irqNum, int busRate);
 epicsShareFunc void t810Shutdown(void *dummy);
-epicsShareFunc int t810Initialise(void);
+epicsShareFunc long t810Initialise(void);
 
 #endif /* INCdrvTip810H */

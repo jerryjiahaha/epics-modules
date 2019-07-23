@@ -1,4 +1,5 @@
 /*******************************************************************************
+
 Project:
     CAN Bus Driver for EPICS
 
@@ -9,7 +10,7 @@ Description:
     TIP810 Status Binary Input device support
 
 Author:
-    Andrew Johnson <anjohnson@iee.org>
+    Andrew Johnson <Andrew.N.Johnson@gmail.com>
 Created:
     3 April 1997
 
@@ -53,28 +54,26 @@ Copyright (c) 1995-2000 Andrew Johnson
 
 
 /* Create the dset for devBiTip810 */
-static long init_bi(struct biRecord *prec);
+static long init_bi(struct dbCommon *prec);
 static long read_bi(struct biRecord *prec);
 
 struct {
-	long		number;
-	DEVSUPFUN	report;
-	DEVSUPFUN	init;
-	DEVSUPFUN	init_record;
-	DEVSUPFUN	get_ioint_info;
-	DEVSUPFUN	read_bi;
+    dset common;
+    long (*read_bi)(struct biRecord *prec);
 } devBiTip810 = {
-	5,
-	NULL,
-	NULL,
-	init_bi,
-	NULL,
-	read_bi
+    {
+        5,
+        NULL,
+        NULL,
+        init_bi,
+        NULL
+    },
+    read_bi
 };
 epicsExportAddress(dset, devBiTip810);
 
 static long init_bi(
-    struct biRecord *prec
+    struct dbCommon *pcommon
 ) {
     static struct {
 	char		*string;
@@ -91,6 +90,7 @@ static long init_bi(
 	{ NULL,		0 }
     };
 
+    struct biRecord *prec = (struct biRecord *) pcommon;
     char *canString;
     char *name;
     char separator;
