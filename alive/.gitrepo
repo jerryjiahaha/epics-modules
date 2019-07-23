@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/epics-modules/alive.git
 	branch = master
-	commit = 59ad7fda5389a9aaf0ce026439a9f84cfb99a5a1
-	parent = 60e1f469ce83c94409841b97f8048395e49169ce
+	commit = 07209ac5b8b6c597654d3ea08ee6aed84a7edd24
+	parent = 2bed6b44553369aee5424f6247b4a895af625336
 	method = merge
 	cmdver = 0.4.0
