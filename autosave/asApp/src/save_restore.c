@@ -1102,7 +1102,7 @@ STATIC int save_restore(void)
 
 			/*** Periodically make sequenced backup of most recent saved file ***/
 			if (do_seq_check && plist->do_backups && (plist->status > SR_STATUS_FAIL)) {
-				if (save_restoreNumSeqFiles && plist->last_save_file &&
+				if (save_restoreNumSeqFiles && plist->last_save_file[0] &&
 					(epicsTimeDiffInSeconds(&currTime, &plist->backup_time) >
 						save_restoreSeqPeriodInSeconds)) {
 					do_seq(plist);
@@ -1438,8 +1438,7 @@ STATIC int connect_list(struct chlist *plist, int verbose)
 	}
 	epicsSnprintf(SR_recentlyStr, STATUS_STR_LEN-1, "%s: %d of %d PV's connected", plist->save_file, n, m);
 	if (verbose) {
-		printf(SR_recentlyStr);
-		printf("\n");
+		printf("%s\n", SR_recentlyStr);
 	}
 
 	return(get_channel_values(plist));
@@ -1850,18 +1849,18 @@ STATIC int write_it(char *filename, struct chlist *plist)
 		}
 
 		errno = 0;
-		if (pchannel->curr_elements <= 1) {
+		if (is_long_string) {
+			/* write first BUF-SIZE-1 characters of long string, so dbrestore doesn't choke. */
+			strNcpy(value_string, pchannel->pArray, BUF_SIZE);
+			value_string[BUF_SIZE-1] = '\0';
+			n = fprintf(out_fd, "%-s\n", value_string);
+		} else if (pchannel->curr_elements <= 1) {
 			/* treat as scalar */
 			if (pchannel->enum_val >= 0) {
 				n = fprintf(out_fd, "%d\n",pchannel->enum_val);
 			} else {
 				n = fprintf(out_fd, "%-s\n", pchannel->value);
 			}
-		} else if (is_long_string) {
-			/* write first BUF-SIZE-1 characters of long string, so dbrestore doesn't choke. */
-			strNcpy(value_string, pchannel->pArray, BUF_SIZE);
-			value_string[BUF_SIZE-1] = '\0';
-			n = fprintf(out_fd, "%-s\n", value_string);
 		} else {
 			/* treat as array */
 			n = SR_write_array_data(out_fd, pchannel->name, (void *)pchannel->pArray, pchannel->curr_elements);
@@ -2241,8 +2240,8 @@ STATIC void doPeriodicDatedBackup(struct chlist *plist) {
 		makeNfsPath(save_file, save_file, plist->save_file);
 	}
 
-	strncat(save_file, "_b_", sizeof(save_file)-strlen(save_file));
-	strncat(save_file, datetime, sizeof(save_file)-strlen(save_file));
+	strncat(save_file, "_b_", sizeof(save_file)-strlen(save_file)-1);
+	strncat(save_file, datetime, sizeof(save_file)-strlen(save_file)-1);
 	if (save_restoreDebug > 1) {
 		printf("save_restore:doPeriodicDatedBackup: filename is '%s'\n", save_file);
 	}
@@ -2286,7 +2285,7 @@ int create_periodic_set(char *filename, int period, char *macrostring)
 
 int create_triggered_set(char *filename, char *trigger_channel, char *macrostring)
 {
-	if (trigger_channel && (isalpha((int)trigger_channel[0]) || isdigit((int)trigger_channel[0]))) {
+	if (trigger_channel && isValid1stPVChar((int)trigger_channel[0])) {
 		return(create_data_set(filename, TRIGGERED, 0, trigger_channel, 0, macrostring));
 	}
 	else {
@@ -3111,9 +3110,12 @@ STATIC int manual_array_restore(FILE *inp_fd, char *PVname, chid chanid, char *v
 					while (*bp && (*bp != ELEMENT_END) && (*bp != ESCAPE)) bp++;
 					switch (*bp) {
 					case ELEMENT_END:
-						found = 1; bp++; break;
+						found = 1; 
+						bp++; 
+						break;
 					case ESCAPE:
-						if (*(++bp) == ELEMENT_END) bp++; break;
+						if (*(++bp) == ELEMENT_END)    { bp++; } 
+						break;
 					default:
 						if ((bp = fgets(buffer, BUF_SIZE, inp_fd)) == NULL) {
 							end_of_file = 1;
@@ -3381,7 +3383,7 @@ STATIC int do_manual_restore(char *filename, int file_type, char *macrostring)
 		if (save_restoreDebug >= 5) {
 			printf("save_restore:do_manual_restore: PVname='%s'\n", PVname);
 		}
-		if (isalpha((int)PVname[0]) || isdigit((int)PVname[0])) {
+		if (isValid1stPVChar((int)PVname[0])) {
 			/* handle long string name */
 			strNcpy(realName, PVname, PV_NAME_LEN);
 			is_long_string = 0;

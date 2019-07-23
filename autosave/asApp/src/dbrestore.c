@@ -305,7 +305,7 @@ long SR_put_array_values(char *PVname, void *p_data, long num_values)
 	DBADDR *paddr = &dbaddr;
 	long status, max_elements=0;
 	STATIC long curr_no_elements=0, offset=0;
-	struct rset	*prset;
+	rset *prset;
 	dbfType field_type;
 						
 	if ((status = dbNameToAddr(PVname, paddr)) != 0) {
@@ -594,9 +594,12 @@ long SR_array_restore(int pass, FILE *inp_fd, char *PVname, char *value_string, 
 					while (*bp && (*bp != ELEMENT_END) && (*bp != ESCAPE)) bp++;
 					switch (*bp) {
 					case ELEMENT_END:
-						found = 1; bp++; break;
+						found = 1; 
+						bp++; 
+						break;
 					case ESCAPE:
-						if (*(++bp) == ELEMENT_END) bp++; break;
+						if (*(++bp) == ELEMENT_END)    { bp++; } 
+						break;
 					default:
 						if ((bp = fgets(buffer, BUF_SIZE, inp_fd)) == NULL) {
 							end_of_file = 1;

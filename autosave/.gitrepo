@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/epics-modules/autosave.git
 	branch = master
-	commit = f750cc5dc37cc411d0f57a84f89f922b2b9333dd
-	parent = 795e09613d892522e05f114a8c1027a5397c27f7
+	commit = c6bc0a2ba2357ed48ab66c157275cb3b24e1e358
+	parent = 1310b304cfa28853564a7c86e6c603ec6ebede51
 	method = merge
 	cmdver = 0.4.0
