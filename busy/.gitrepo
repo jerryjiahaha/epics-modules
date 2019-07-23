@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/epics-modules/busy.git
 	branch = master
-	commit = f57930f550f402fc42e06cc96dfbc41b29ec0cdd
-	parent = fac3adc0efeca59672ddda52c7523318a4527a57
+	commit = 7074c6e9ecdad0a68a3c4cd9a9f95bcc4ceb0e67
+	parent = 5ec2b8befbeb3260f3c3111c1e2fd1c352372620
 	method = merge
 	cmdver = 0.4.0
