@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/jerryjiahaha/StreamDevice.git
+	branch = update
+	commit = 0648dfd18e623a67195877e733c93c20230bed1e
+	parent = 2d647b50a820e578a4bb655399c33eb3ebee805d
+	method = merge
+	cmdver = 0.4.0

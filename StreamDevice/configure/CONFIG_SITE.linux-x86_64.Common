@@ -1,0 +1,5 @@
+
+CONFIG_INSTALLS += ../CONFIG_SITE.linux-x86_64.Common
+-include $(TOP)/../configure/CONFIG_SITE.local
+INSTALL_LOCATION=/opt/epics/modules/StreamDevice
+-include $(TOP)/configure/CONFIG_SITE.local

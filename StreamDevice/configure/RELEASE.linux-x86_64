@@ -1,0 +1,16 @@
+
+ASYN=/opt/epics/modules/asyn
+IPAC=/opt/epics/modules/ipac
+STREAM=/opt/epics/modules/StreamDevice
+SNCSEQ=/opt/epics/modules/seq
+DEVIOCSTATS=/opt/epics/modules/devIocStats
+CALC=/opt/epics/modules/calc
+ALIVE=/opt/epics/modules/alive
+SSCAN=/opt/epics/modules/sscan
+AUTOSAVE=/opt/epics/modules/autosave
+BUSY=/opt/epics/modules/busy
+
+EPICS_BASE=${BASE_PATH}
+SUPPORT=${BASE_SUPPORT_PATH}
+-include $(TOP)/../configure/RELEASE.local
+-include $(TOP)/configure/RELEASE.local
