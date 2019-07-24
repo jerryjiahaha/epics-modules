@@ -8,6 +8,8 @@ You can put `epics-linux-x86_64.conf` under `/etc/ld.so.conf.d/` if you use linu
 
 ~~Setup development environment: `./setupRemote.sh`~~
 
+Check `config_site.py`, it will read env, generate depedency and `CONFIG_SITE.*`, `RELEASE.*` (Some generated files are in .gitignore, so you could use `git clean -x --dry-run` to check)
+
 NOTE: If you use `make -jX` failed, try to build `extensions` first. ( `devIocStats` in `modules` depends on `msi` in `extensions` )
 
 Env variable

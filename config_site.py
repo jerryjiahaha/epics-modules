@@ -53,18 +53,20 @@ _depends = {
     'calc': ['sscan',],
     'devIocStats': ['seq',],
     'alive': [],
+    'StreamDevice': ['asyn'],
     # If a package does not have depedency, just with empty list
 }
 
 module_alias = {
     # module dir name: module support name
     'seq': 'SNCSEQ',
+    'StreamDevice': 'STREAM',
 }
 
 support_fname = "SUPPORT.{EPICS_HOST_ARCH}"
 support_content = """
 -include $(TOP)/../configure/SUPPORT.local
-SUPPORT=${{BASE_SUPPORT}}
+SUPPORT=${{BASE_SUPPORT_PATH}}
 -include $(TOP)/configure/SUPPORT.local
 """
 EpicsConfig(support_fname, support_content)
@@ -87,6 +89,7 @@ EpicsConfig(root_config_site, root_config_content)
 config_site_fname = "CONFIG_SITE.{EPICS_HOST_ARCH}.Common"
 # `support` will be formatted later
 config_site_content = """
+CONFIG_INSTALLS += ../CONFIG_SITE.{{EPICS_HOST_ARCH}}.Common
 -include $(TOP)/../configure/CONFIG_SITE.local
 INSTALL_LOCATION={{SUPPORT}}/{module}
 -include $(TOP)/configure/CONFIG_SITE.local
@@ -94,7 +97,10 @@ INSTALL_LOCATION={{SUPPORT}}/{module}
 # would render config site in main module func
 
 release_fname = "RELEASE.{EPICS_HOST_ARCH}.Common"
+release_fname2 = "RELEASE.{EPICS_HOST_ARCH}"
 release_content = """
+EPICS_BASE=${{BASE_PATH}}
+SUPPORT=${{BASE_SUPPORT_PATH}}
 -include $(TOP)/../configure/RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 """
@@ -138,14 +144,12 @@ def GenerateReleaseSupport(modules):
     ```
     And {SUPPORT} will be will be rendered later
     """
-    template = """
-    """
+    template = f"""{os.linesep}"""
     for m in modules:
         name = m.upper()
         if m in module_alias:
             name = module_alias[m].upper()
-        template += f"""{name}={{SUPPORT}}/{m}
-        """
+        template += f"""{name}={{SUPPORT}}/{m}{os.linesep}"""
 #        template += name + """={SUPPORT}/""" + f"""{m}
     return template
 
@@ -180,12 +184,17 @@ if __name__ == '__main__':
     print("modules:", modules)
 
     
+    supports = GenerateReleaseSupport(modules)
+    EpicsConfig(release_fname, supports + release_content)
+#    EpicsConfig(release_fname2, supports + release_content)
     # Configure depedency for modules
     for m in modules:
-        # TODO move this support gen to root configure
-        supports = GenerateReleaseSupport(modules)
         EpicsConfig(
             release_fname,
+            supports + release_content,
+            module=m)
+        EpicsConfig(
+            release_fname2,
             supports + release_content,
             module=m)
 #    list(map(lambda m:

@@ -24,4 +24,5 @@ configure/EPICS_BASE.linux-x86_64
 configure/CONFIG_SITE.local
 */configure/CONFIG_SITE.linux-x86_64.Common
 */configure/RELEASE.linux-x86_64.Common
+*/configure/RELEASE.linux-x86_64
 configure/SUPPORT.linux-x86_64

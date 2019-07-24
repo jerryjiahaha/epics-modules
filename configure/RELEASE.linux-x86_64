@@ -1,0 +1,14 @@
+
+BUSY=/opt/epics/modules/busy
+SNCSEQ=/opt/epics/modules/seq
+AUTOSAVE=/opt/epics/modules/autosave
+CALC=/opt/epics/modules/calc
+ASYN=/opt/epics/modules/asyn
+IPAC=/opt/epics/modules/ipac
+SSCAN=/opt/epics/modules/sscan
+DEVIOCSTATS=/opt/epics/modules/devIocStats
+STREAM=/opt/epics/modules/StreamDevice
+ALIVE=/opt/epics/modules/alive
+
+-include $(TOP)/../configure/RELEASE.local
+-include $(TOP)/configure/RELEASE.local
